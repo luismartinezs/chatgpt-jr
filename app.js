@@ -9,15 +9,14 @@ const openai = new OpenAIApi(configuration);
 
 const app = express();
 
+let messages = []
+
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
   res.render('index');
 });
-
-let messages = []
-
 
 app.post('/chat', async (req, res) => {
   const prompt = req.body.prompt;
@@ -42,6 +41,7 @@ app.post('/chat', async (req, res) => {
 
   } catch (error) {
     console.log(error);
+    res.status(500).send('Error getting response from OpenAI API');
   }
 });
 

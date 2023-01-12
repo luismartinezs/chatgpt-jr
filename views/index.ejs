@@ -1,25 +1,49 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>ChatGPT Clone</title>
-    </head>
-    <body>
-        <form action="/chat" method="post">
-            <label for="prompt">Enter your question:</label>
-            <input type="text" id="prompt" name="prompt">
-            <input type="submit" value="Submit">
-        </form>
-
-        <div class="chat-history">
-          <% for(let i = 0; i < messages.length; i++) { %>
-            <div class="chat-message <%= messages[i].type %>-message">
-              <% if (messages[i].type === 'user') { %>
-                <p>User: <%= messages[i].text %></p>
-              <% } else { %>
-                <p>Chatbot: <%= messages[i].text %></p>
-              <% } %>
-            </div>
-          <% } %>
+  <head>
+    <title>ChatGPT Clone</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <form class="form-group" action="/chat" method="post">
+        <div class="form-group">
+          <label for="prompt">Enter your question:</label>
+          <input
+            class="form-control"
+            type="text"
+            name="prompt"
+            id="prompt"
+            required
+          />
         </div>
-    </body>
+        <button class="btn btn-primary" type="submit">Submit</button>
+      </form>
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <div class="card">
+            <div class="card-body">
+              <div class="chat-history">
+                <% if (typeof messages !== 'undefined') { %> <% for(let i = 0; i
+                < messages.length; i++) { %>
+                <div class="chat-message <%= messages[i].type %>-message">
+                  <% if (messages[i].type === 'user') { %>
+                  <p class="text-left">User: <%= messages[i].text %></p>
+                  <% } else { %>
+                  <p class="text-right">Chatbot: <%= messages[i].text %></p>
+                  <% } %>
+                </div>
+                <% } %> <% } %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
