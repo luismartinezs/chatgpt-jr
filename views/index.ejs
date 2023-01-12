@@ -10,8 +10,16 @@
             <input type="submit" value="Submit">
         </form>
 
-        <% if (typeof response !== 'undefined') { %>
-            <p>Chatbot: <%= response %></p>
-        <% } %>
+        <div class="chat-history">
+          <% for(let i = 0; i < messages.length; i++) { %>
+            <div class="chat-message <%= messages[i].type %>-message">
+              <% if (messages[i].type === 'user') { %>
+                <p>User: <%= messages[i].text %></p>
+              <% } else { %>
+                <p>Chatbot: <%= messages[i].text %></p>
+              <% } %>
+            </div>
+          <% } %>
+        </div>
     </body>
 </html>
