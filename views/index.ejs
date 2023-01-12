@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ChatGPT Clone</title>
+    </head>
+    <body>
+        <form action="/chat" method="post">
+            <label for="prompt">Enter your question:</label>
+            <input type="text" id="prompt" name="prompt">
+            <input type="submit" value="Submit">
+        </form>
+
+        <% if (typeof response !== 'undefined') { %>
+            <p>Chatbot: <%= response %></p>
+        <% } %>
+    </body>
+</html>
